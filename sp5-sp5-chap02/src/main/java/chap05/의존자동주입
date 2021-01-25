@@ -1,0 +1,11 @@
+컴포넌트 스캔은 설정파일에 등록되지않은 빈을 직접 클래스 검색을 통해서 등록해주는 기능이다.
+따라서 설정 코드가 크게 줄어든다.
+
+@Component의 속성의 이름을 주면 해당 이름으로 빈 객체가 등록된다.
+하지만 속성의 이름을 주지 않을 경우 클래스의 첫글자를 소문자로 바꾼 빈 이름으로 등록된다.
+
+ComponentScan의 속성중 excludeFilters = @Filter(type = 정규식, aspectj, annotation, assignable 타입)으로 
+스캔 대상에서 제외할 수 있다.
+
+기본적으로 @Controller , @Configuration , @Aspect @ ,Repository @Service는 기본 스캔대상에 해당된다.
+자동 스캔 보다는 수동 등록된 빈이 우선순위이다.
