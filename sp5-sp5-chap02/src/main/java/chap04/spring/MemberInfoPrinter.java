@@ -1,6 +1,7 @@
 package chap04.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class MemberInfoPrinter {
 	
@@ -27,6 +28,7 @@ public class MemberInfoPrinter {
 	}
 	
 	@Autowired
+	@Qualifier("printer") //printer라는 이름을 주어 한정시키고
 	public void setPrinter(MemberPrinter printer) {
 		this.printer = printer;
 	}

@@ -1,5 +1,6 @@
 package chap04.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,6 +9,7 @@ import chap04.spring.MemberDao;
 import chap04.spring.MemberInfoPrinter;
 import chap04.spring.MemberPrinter;
 import chap04.spring.MemberRegisterService;
+import chap04.spring.MemberSummaryPrinter;
 
 //assembler대신 스프링을 이용한 객체 조립과 사용
 @Configuration
@@ -30,10 +32,17 @@ public class AppCtx {
 	}
 
 	@Bean
-	public MemberPrinter memberPrinter() {
+	@Qualifier("printer") //printer라는 이름을 주어 한정시키고
+	public MemberPrinter memberPrinter1() {
 		return new MemberPrinter();
 	}
-
+	
+	@Bean
+	@Qualifier("summaryPrinter")
+	public MemberSummaryPrinter memberPrinter2() {
+		return new MemberSummaryPrinter();
+	}
+	
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
 		return new MemberInfoPrinter();
