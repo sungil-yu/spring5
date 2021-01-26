@@ -9,3 +9,13 @@ aop를 이용해 공통 기능 구현하는 법은 다음과 같다.
 1.Aspect를 사용할 클래스에 @Aspect 애노테이션을 붙인다.
 2.@PointCut 애노테이션으로 공통 기능을 적용할 PointCut을 정의한다.
 3. 공통 기능을 구현한 메서드에 @Around 애노테이션을 적용한다.
+
+ProceedingJoinPoint의 proceed()메서드를 호출해 대상 객체의 기능을 수행하는데 이 경우 대상 객체의 대한 정보
+실행되는 메서드 , 메서드의 인자의 정보가 필요할 경우
+Signature getSignature()
+Object getTarget() 
+Object[] getArgs() 를 이용해 정보를 구한다. 
+
+
+여러 개의 Aspect를 가지고 있을 때 우선순위를 정해주 구는 것은 @Order 애노테이션이다.
+값이 작으면 먼저 적용 크면 나중에 적용한다.
