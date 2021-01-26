@@ -1,54 +1,69 @@
 package chap08.spring;
 
-import java.time.LocalDateTime;
-import chap03.exception.WrongPasswordException;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "MEMBER")
 public class Member {
 
-	private Long id;
-	private String email;
-	private String password;
-	private String name;
-	private LocalDateTime registerDateTime;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
 
-	public Member(Long id, String email, String password, 
-			String name, LocalDateTime registerDateTime) {
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.registerDateTime = registerDateTime;
-	}
+	@Column(name = "NAME", nullable = false, length= 10)
+	private String username;
 
-	public Long getId() {
+	private Integer age;
+
+	@Enumerated(EnumType.STRING)
+	private RoleType roleType;
+
+	//Date나 캘린더를 맵핑할때 사용한다.
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastModifiedDate;
+
+	@Lob
+	private String description;
+
+	
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getName() {
-		return name;
+	public Integer getAge() {
+		return age;
 	}
 
-	public LocalDateTime getRegisterDateTime() {
-		return registerDateTime;
+	public void setAge(Integer age) {
+		this.age = age;
 	}
-	
-	public void changePassword(String oldPassword, String newPassword) throws WrongPasswordException {
-		if(!password.equals(oldPassword))
-			throw new WrongPasswordException();
-		this.password = newPassword;
-		
-		
-	}
+
 }
+
