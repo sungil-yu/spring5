@@ -1,69 +1,77 @@
 package chap08.spring;
 
-import java.util.Date;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
-@Table(name = "MEMBER")
 public class Member {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
+    private Long id;
+    private String name;
+    private String city;
+    private String street;
+    private String zipcode;
 
-	@Column(name = "NAME", nullable = false, length= 10)
-	private String username;
+    
+    @ManyToOne                        
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
+    
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<Order>();
 
-	private Integer age;
+    //Getter, Setter
+    public Long getId() {
+        return id;
+    }
 
-	@Enumerated(EnumType.STRING)
-	private RoleType roleType;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	//Date나 캘린더를 맵핑할때 사용한다.
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createdDate;
+    public String getName() {
+        return name;
+    }
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date lastModifiedDate;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	@Lob
-	private String description;
+    public String getCity() {
+        return city;
+    }
 
-	
-	public String getId() {
-		return id;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getStreet() {
+        return street;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setStreet(String street) {
+        this.street = street;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getZipcode() {
+        return zipcode;
+    }
 
-	public Integer getAge() {
-		return age;
-	}
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+    public List<Order> getOrders() {
+        return orders;
+    }
 
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
-

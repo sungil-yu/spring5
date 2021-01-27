@@ -1,13 +1,12 @@
 package chap08.main;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import chap08.spring.Member;
+import chap08.spring.Team;
 
 public class JpaMain {
 
@@ -35,32 +34,18 @@ public class JpaMain {
 	}
 
 	private static void logic(EntityManager em) {
-		String id = "id1";
-		Member member = new Member();
-		member.setId(id);
-		member.setUsername("냥냥");
-		member.setAge(2);
-		em.persist(member);
 		
-//		수정
-		member.setAge(20);
-		
-		Member findMember = em.find(Member.class,id);
-		System.out.println("findMember = " + findMember.getUsername() 
-		+ ", age = " + findMember.getAge());
-		
-		//여기서의 쿼리는 JPQL로 테이블에대해선 알지 못한다. 따라서 클래스명으로 검색한다.
-		//이 때 flush()한다
-		List<Member> members = em.createQuery("select m from memberDao m",Member.class)
-				.getResultList();
-		
-		System.out.println(members);
-		
-		System.out.println("members.size = " + members.size());
-		
-		em.remove(member);
 	}
+	
+	
+	public void testSave(EntityManager em) {
 
+		Team team1 = new Team("team1", "팀1");
+		em.persist(team1);
+		
+		
+		
+	}
 }
 
 
