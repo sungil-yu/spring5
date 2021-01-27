@@ -1,32 +1,22 @@
 package chap09.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Member {
+@AttributeOverrides({
+	@AttributeOverride(name = "id", column = @Column(name = "MEMBER_ID")),
+	@AttributeOverride(name = "name", column = @Column(name = "MEMBER_NAME")),
+	//상속받은 속성을 재정의할 수 도 있다.
+})
+public class Member extends BaseEntity{
 
-	@Id @GeneratedValue
-	@Column(name = "MEMBER_ID")
-	private Long id;
-	
-	//회원과 상품의 관계는 1:N이다.
-	@OneToMany(mappedBy = "member")
-	private List<Order> orders= new ArrayList<>();
-
-	public List<Order> getOrders() {
-		
-		
-		return orders;
-	}
+	//id와 name은 상속을 받는다.
 	
 	
+	private String email;
 	
 	
 	

@@ -32,11 +32,11 @@ public class Order {
 	
 	public void setMember(Member member) {
 		if(this.member != null) {
-			this.member.getOrders().remove(this);
+//			this.member.getOrders().remove(this);
 		}
 		//기존관계를 제거하고 재설정해준다.
 		this.member = member;
-		member.getOrders().add(this);
+//		member.getOrders().add(this);
 		
 	}
 	
