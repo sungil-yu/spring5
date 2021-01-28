@@ -14,13 +14,23 @@ public class Main {
 
 				// 엔티티 매니저 생성
 				EntityManager em = emf.createEntityManager();
-					
+					//IDCLASS
 				Parent parent = new Parent();
 					
 				parent.setId1("id1");
 				parent.setId2("id2");
 				parent.setName("parentName");
 				em.persist(parent);
+				
+				
+				//EMBEDDED
+				Parent parent3 = new Parent();
+				ParentId parentId2 = new ParentId("myid1", "myid2");
+				parent.setId(parentId2);
+				parent.setName("NAME");
+				em.persist(parent3);
+				Parent parent4 = em.find(Parent.class, parentId2);
+			
 				
 				
 				ParentId parentId = new ParentId();

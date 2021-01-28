@@ -1,13 +1,13 @@
 package chap10;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 
 //복합 키 비 식별 관계
 @Entity
-@IdClass(ParentId.class) //식별자 클래스
+//@IdClass(ParentId.class) //식별자 클래스
 public class Parent {
 
 	@Id
@@ -15,6 +15,17 @@ public class Parent {
 	private String id1;
 	
 	
+	@EmbeddedId
+	private ParentId id;
+	
+	public ParentId getId() {
+		return id;
+	}
+
+	public void setId(ParentId id) {
+		this.id = id;
+	}
+
 	@Id
 	@Column(name = "PARENT_ID2")
 	private String id2;
