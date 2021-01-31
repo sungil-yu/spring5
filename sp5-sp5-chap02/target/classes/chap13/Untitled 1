@@ -4,3 +4,5 @@
 
 setFirstResult(int startPosition):조회 시작 위치 (0부터)
 setMaxResults(int maxResult): 조회할 데이터 수
+
+Named 쿼리는 정적쿼리로 미리 파싱한 쿼리를 사용한다. 멀티라인을 자바로 작성하는 건 어려우니 xml로 작성하는 것이 그나마 대안이다.

@@ -27,5 +27,8 @@
 			 <!--  키 생성 전략-->
 			 <property name="hibernate.id/new_generator_mappings" value="true"></property>
         </properties>
+        <mapping-file>META-INF/ormMember.xml</mapping-file>
     </persistence-unit>
+    	
+    
 </persistence>
