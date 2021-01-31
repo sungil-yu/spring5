@@ -1,0 +1,6 @@
+페이징 API는 매우 지루하고 반복적이다.
+또한 문제는 데이터베이스마다 SQL 문법이 다르다는 점이다.
+그래서 JPA는 페이징을 두 API로 추상화했다.
+
+setFirstResult(int startPosition):조회 시작 위치 (0부터)
+setMaxResults(int maxResult): 조회할 데이터 수
